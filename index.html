@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Okunev - portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0f;
+            background-image: radial-gradient(circle at 25% 0%, rgba(99, 102, 241, 0.08) 0%, transparent 50%);
+            color: #e2e8f0;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        section {
+            background: rgba(18, 18, 26, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        section:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(99, 102, 241, 0.2);
+            background: rgba(22, 22, 32, 0.8);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.8rem;
+            background: linear-gradient(120deg, #e2e8f0, #a5b4fc);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            display: inline-block;
+            letter-spacing: -0.3px;
+        }
+
+        h2 i {
+            color: #6366f1;
+            margin-right: 0.6rem;
+        }
+
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2.5rem;
+            background: linear-gradient(135deg, rgba(30, 30, 45, 0.9), rgba(15, 15, 25, 0.95));
+        }
+        .avatar {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s;
+        }
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .avatar:hover {
+            transform: scale(1.05) rotate(3deg);
+            box-shadow: 0 0 35px rgba(99, 102, 241, 0.7);
+        }
+        .hero-info h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #a5b4fc);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .hero-info p {
+            font-size: 1rem;
+            color: #94a3b8;
+            margin-top: 0.3rem;
+        }
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.2rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(99, 102, 241, 0.1);
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            color: #cbd5e1;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            backdrop-filter: blur(4px);
+        }
+        .btn i {
+            font-size: 1rem;
+            color: #818cf8;
+        }
+        .btn:hover {
+            background: #6366f1;
+            color: white;
+            transform: translateY(-3px);
+            border-color: #818cf8;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+        .btn:hover i {
+            color: white;
+        }
+
+        .bio-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-top: 0.5rem;
+        }
+        .bio-col {
+            background: rgba(10, 10, 18, 0.6);
+            border-radius: 1.5rem;
+            padding: 1.6rem;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(99, 102, 241, 0.15);
+        }
+        .bio-col:hover {
+            transform: translateY(-4px);
+            border-color: rgba(99, 102, 241, 0.5);
+            background: rgba(20, 20, 30, 0.7);
+            box-shadow: 0 15px 25px -12px rgba(0, 0, 0, 0.4);
+        }
+        .bio-col h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #a5b4fc;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .bio-col ul, .bio-col p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+        .bio-col li {
+            margin-left: 1.2rem;
+            margin-bottom: 0.65rem;
+            list-style-type: none;
+            position: relative;
+        }
+        .bio-col li::before {
+            content: "▹";
+            position: absolute;
+            left: -1.2rem;
+            color: #818cf8;
+        }
+
+        .skills-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+        }
+        .chart-area {
+            flex: 1;
+            min-width: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+        }
+        canvas {
+            max-width: 320px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 12px rgba(99, 102, 241, 0.3));
+            transition: transform 0.3s;
+        }
+        canvas:hover {
+            transform: scale(1.02);
+        }
+        .skills-list {
+            flex: 1;
+            min-width: 240px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .skill-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.7rem 1rem;
+            background: rgba(15, 15, 23, 0.6);
+            border-radius: 60px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.2s;
+        }
+        .skill-item:hover {
+            transform: translateX(6px);
+            background: rgba(99, 102, 241, 0.15);
+            border-color: #6366f1;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .skill-name {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+        }
+        .skill-name i {
+            width: 1.6rem;
+            color: #818cf8;
+        }
+        .skill-percent {
+            font-family: monospace;
+            font-weight: bold;
+            background: #1e1e2a;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #a5b4fc;
+            border: 1px solid #2d2d3a;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #4a5568;
+            padding: 1rem;
+        }
+
+        @media (max-width: 800px) {
+            .container {
+                padding: 1rem;
+            }
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .skills-wrapper {
+                flex-direction: column;
+            }
+            .bio-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <section class="hero">
+        <div class="avatar">
+            <img src="https://media.discordapp.net/attachments/997005413167923281/1513782653676163102/photo_2026-05-04_15-23-28_2.jpg?ex=6a28fb75&is=6a27a9f5&hm=eeea634498ef7566985f74dfa5417f647692e7bd2d146621fbafb80dcf48804c&=&format=webp&width=350&height=350" alt="Avatar">
+        </div>
+        <div class="hero-info">
+            <h1>Okunev (24na7)</h1>
+            <p class="hero-subtitle">Java senior & Minecraft developer</p>
+            <div class="contact-buttons">
+                <a href="#" class="btn" id="githubBtn"><i class="fab fa-github"></i> github.com/24na7</a>
+                <a href="#" class="btn" id="tgBtn"><i class="fab fa-telegram"></i> @miraa_dev</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title"><i class="fas fa-timeline"></i> <span class="title-text">Через что я прошёл?</span></h2>
+        <div class="bio-columns">
+            <div class="bio-col">
+                <h3 class="col1-title"><i class="fas fa-history"></i> <span class="col1-title-text">Прошлые наработки</span></h3>
+                <ul class="col1-list">
+                    <li class="col1-li1">2024-2025 — Активный разработчик сборки <strong>LostSouls</strong> по Minecraft.</li>
+                    <li class="col1-li2">2025 — Главный разработчик сайта <strong>t0rchestv0.ru</strong> Java, CSS, JS</li>
+                    <li class="col1-li3">2025 — Главный разработчик telegram бота <strong>Мираа</strong> Java, SQL</li>
+                </ul>
+            </div>
+            <div class="bio-col">
+                <h3 class="col2-title"><i class="fas fa-calendar-alt"></i> <span class="col2-title-text">Активное участие</span></h3>
+                <ul class="col2-list">
+                    <li class="col2-li1">Главный разработчик и создатель сервера <strong>Astromix</strong> Java, SQL, Kotlin</li>
+                    <li class="col2-li2">Технический администратор стримерского сервера <strong>БаняКрафт</strong></li>
+                    <li class="col2-li3">Активный мододел <strong>Modrinth и CurseForge</strong></li>
+                </ul>
+            </div>
+            <div class="bio-col">
+                <h3 class="col3-title"><i class="fas fa-fire"></i> <span class="col3-title-text">Чем активно занимаюсь сейчас</span></h3>
+                <ul class="col3-list">
+                    <li class="col3-li1">Создаю свою <strong>API</strong> для комфортного использования плагинов Java/Kotlin в своём сервере.</li>
+                    <li class="col3-li2">Активно продвигаю свой сервер <strong>Astromix</strong></li>
+                    <li class="col3-li3">Обновляю некоторые наработки на сайтах <strong>Modrinth, GitHub, CurseForge</strong></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="skills-title"><i class="fas fa-chart-simple"></i> <span class="skills-title-text">Мои маленькие знания</span></h2>
+        <div class="skills-wrapper">
+            <div class="chart-area">
+                <canvas id="skillsChart" width="500" height="500" style="max-width:280px; max-height:280px; width:100%; height:auto"></canvas>
+            </div>
+            <div class="skills-list" id="skillsList">
+                <div class="skill-item" data-skill="java">
+                    <span class="skill-name"><i class="fab fa-java"></i> Java</span>
+                    <span class="skill-percent">47%</span>
+                </div>
+                <div class="skill-item" data-skill="css">
+                    <span class="skill-name"><i class="fab fa-css3-alt"></i> CSS</span>
+                    <span class="skill-percent">31%</span>
+                </div>
+                <div class="skill-item" data-skill="html">
+                    <span class="skill-name"><i class="fab fa-html5"></i> HTML</span>
+                    <span class="skill-percent">19%</span>
+                </div>
+                <div class="skill-item" data-skill="python">
+                    <span class="skill-name"><i class="fab fa-python"></i> Python</span>
+                    <span class="skill-percent">11%</span>
+                </div>
+                <div class="skill-item" data-skill="js">
+                    <span class="skill-name"><i class="fab fa-js"></i> JS</span>
+                    <span class="skill-percent">30%</span>
+                </div>
+                <div class="skill-item" data-skill="kotlin">
+                    <span class="skill-name"><i class="fab fa-android"></i> Kotlin</span>
+                    <span class="skill-percent">28%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-text">
+        © 2026 Okunev · Site by GitHub Pages · thx for you
+    </footer>
+</div>
+
+<script>
+    (function() {
+        const userLang = navigator.language || navigator.userLanguage;
+        const isRussian = userLang.toLowerCase().startsWith('ru');
+        const translations = {
+            ru: {
+                heroSubtitle: "Java senior & Minecraft developer",
+                titleTimeline: "Через что я прошёл?",
+                col1Title: "Прошлые наработки",
+                col1li1: "2024-2025 — Активный разработчик сборки <strong>LostSouls</strong> по Minecraft.",
+                col1li2: "2025 — Главный разработчик сайта <strong>t0rchestv0.ru</strong> Java, CSS, JS",
+                col1li3: "2025 — Главный разработчик telegram бота <strong>Мираа</strong> Java, SQL",
+                col2Title: "Активное участие",
+                col2li1: "Главный разработчик и создатель сервера <strong>Astromix</strong> Java, SQL, Kotlin",
+                col2li2: "Технический администратор стримерского сервера <strong>БаняКрафт</strong>",
+                col2li3: "Активный мододел <strong>Modrinth и CurseForge</strong>",
+                col3Title: "Чем активно занимаюсь сейчас",
+                col3li1: "Создаю свою <strong>API</strong> для комфортного использования плагинов Java/Kotlin в своём сервере.",
+                col3li2: "Активно продвигаю свой сервер <strong>Astromix</strong>",
+                col3li3: "Обновляю некоторые наработки на сайтах <strong>Modrinth, GitHub, CurseForge</strong>",
+                skillsTitle: "Мои маленькие знания",
+                footer: "© 2026 Okunev · Site by GitHub Pages · thx for you"
+            },
+            en: {
+                heroSubtitle: "Java senior & Minecraft developer",
+                titleTimeline: "What have I been through?",
+                col1Title: "Past achievements",
+                col1li1: "2024-2025 — Active developer of <strong>LostSouls</strong> Minecraft modpack.",
+                col1li2: "2025 — Lead developer of <strong>t0rchestv0.ru</strong> website Java, CSS, JS",
+                col1li3: "2025 — Lead developer of <strong>Miraa</strong> telegram bot Java, SQL",
+                col2Title: "Active participation",
+                col2li1: "Lead developer and creator of <strong>Astromix</strong> server Java, SQL, Kotlin",
+                col2li2: "Technical administrator of <strong>BanyaKraft</strong> streamer server",
+                col2li3: "Active modder on <strong>Modrinth and CurseForge</strong>",
+                col3Title: "What I'm actively doing now",
+                col3li1: "Creating my own <strong>API</strong> for convenient use of Java/Kotlin plugins on my server.",
+                col3li2: "Actively promoting my <strong>Astromix</strong> server",
+                col3li3: "Updating some developments on <strong>Modrinth, GitHub, CurseForge</strong>",
+                skillsTitle: "My little knowledge",
+                footer: "© 2026 Okunev · Site by GitHub Pages · thx for you"
+            }
+        };
+
+        const t = isRussian ? translations.ru : translations.en;
+
+        document.querySelector('.hero-subtitle').textContent = t.heroSubtitle;
+        document.querySelector('.title-text').textContent = t.titleTimeline;
+        document.querySelector('.col1-title-text').textContent = t.col1Title;
+        document.querySelector('.col1-li1').innerHTML = t.col1li1;
+        document.querySelector('.col1-li2').innerHTML = t.col1li2;
+        document.querySelector('.col1-li3').innerHTML = t.col1li3;
+        document.querySelector('.col2-title-text').textContent = t.col2Title;
+        document.querySelector('.col2-li1').innerHTML = t.col2li1;
+        document.querySelector('.col2-li2').innerHTML = t.col2li2;
+        document.querySelector('.col2-li3').innerHTML = t.col2li3;
+        document.querySelector('.col3-title-text').textContent = t.col3Title;
+        document.querySelector('.col3-li1').innerHTML = t.col3li1;
+        document.querySelector('.col3-li2').innerHTML = t.col3li2;
+        document.querySelector('.col3-li3').innerHTML = t.col3li3;
+        document.querySelector('.skills-title-text').textContent = t.skillsTitle;
+        document.querySelector('.footer-text').textContent = t.footer;
+
+        const skillsData = {
+            java: 47,
+            css: 31,
+            html: 19,
+            python: 11,
+            js: 30,
+            kotlin: 28
+        };
+
+        const colorPalette = [
+            '#f97316', '#eab308', '#3b82f6', '#ef4444', '#10b981', '#8b5cf6'
+        ];
+
+        let currentChart = null;
+        const ctx = document.getElementById('skillsChart').getContext('2d');
+
+        function updateChart() {
+            const orderKeys = ['java', 'css', 'html', 'python', 'js', 'kotlin'];
+            const labels = [];
+            const data = [];
+            const backgroundColors = [];
+
+            for (let i = 0; i < orderKeys.length; i++) {
+                const key = orderKeys[i];
+                let displayName = key.toUpperCase();
+                if (key === 'js') displayName = 'JS';
+                else if (key === 'css') displayName = 'CSS';
+                else if (key === 'html') displayName = 'HTML';
+                else if (key === 'java') displayName = 'Java';
+                else if (key === 'kotlin') displayName = 'Kotlin';
+                else if (key === 'python') displayName = 'Python';
+                labels.push(displayName);
+                data.push(skillsData[key]);
+                backgroundColors.push(colorPalette[i % colorPalette.length]);
+            }
+
+            if (currentChart) {
+                currentChart.data.labels = labels;
+                currentChart.data.datasets[0].data = data;
+                currentChart.data.datasets[0].backgroundColor = backgroundColors;
+                currentChart.update();
+            } else {
+                currentChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: data,
+                            backgroundColor: backgroundColors,
+                            borderColor: 'rgba(10, 10, 18, 0.8)',
+                            borderWidth: 3,
+                            borderRadius: 12,
+                            spacing: 4,
+                            cutout: '65%',
+                            hoverOffset: 12
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    color: '#cbd5e1',
+                                    font: { size: 11, weight: '500' },
+                                    boxWidth: 10,
+                                    padding: 12
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: '#1e1e2e',
+                                titleColor: '#f1f5f9',
+                                bodyColor: '#cbd5e6',
+                                borderColor: '#6366f1',
+                                borderWidth: 1,
+                                callbacks: {
+                                    label: function(context) {
+                                        return ` ${context.label}: ${context.raw}%`;
+                                    }
+                                }
+                            }
+                        },
+                        animation: {
+                            animateRotate: true,
+                            animateScale: true,
+                            duration: 1000,
+                            easing: 'easeOutQuart'
+                        },
+                        layout: {
+                            padding: 10
+                        }
+                    }
+                });
+            }
+        }
+
+        function attachContacts() {
+            document.getElementById('githubBtn')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.open('https://github.com/24na7', '_blank');
+            });
+
+            document.getElementById('tgBtn')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.open('https://t.me/miraa_dev', '_blank');
+            });
+        }
+
+        function loadChartAndInit() {
+            if (typeof Chart !== 'undefined') {
+                updateChart();
+                attachContacts();
+                return;
+            }
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js';
+            script.onload = () => {
+                updateChart();
+                attachContacts();
+            };
+            document.head.appendChild(script);
+        }
+
+        loadChartAndInit();
+    })();
+</script>
+</body>
+</html>
